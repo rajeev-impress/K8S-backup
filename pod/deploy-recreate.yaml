@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: techieglobusdep-recreate
+spec:
+  replicas: 2
+  strategy: 
+    type: Recreate
+  selector:
+    matchLabels:
+      app: recv1
+
+  template:
+    metadata:
+      name: recv1
+      labels:
+        app: recv1
+    spec:
+      containers:
+      - image: samridhrakesh/appv2:v2
+        name: nodejs
+
+---
+apiVersion: v1
+kind: Service 
+metadata:
+  name: recv1
+spec:
+  type: NodePort
+  selector:
+    app: recv1
+  ports:
+  - port: 80
+    targetPort: 8080

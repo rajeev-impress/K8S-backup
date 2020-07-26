@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: appv1
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        env: appv1
+    spec:
+      containers:
+      - name: appv1
+        image: samridhrakesh/appv1:v1
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service 
+metadata:
+  name: appv1
+spec:
+  type: NodePort
+  selector:
+    env: appv1
+  ports:
+  - port: 80
+    targetPort: 8080

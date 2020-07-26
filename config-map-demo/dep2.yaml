@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus
+  labels:
+    app: prom
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prom
+  template:
+    metadata:
+      labels:
+        app: prom
+    spec:
+      serviceAccountName: prometheus
+      containers:
+      - args:
+        - --storage.tsdb.retention.time=5h
+        - --config.file=/etc/prometheus/prometheus.yml
+        name: prom-prometheus
+        image: prom/prometheus
+        ports:
+        - containerPort: 9090
+        volumeMounts:
+          - name: configuration
+            mountPath: /etc/prometheus
+      volumes:
+        - name: configuration
+          configMap:
+            name: prometheus-config
+   
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: promethius-service
+spec:
+  type: NodePort
+  selector:
+    app: prom
+  ports:
+  - port: 9090
+    targetPort: 9090

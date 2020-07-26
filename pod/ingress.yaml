@@ -1,0 +1,15 @@
+apiVersion: voyager.appscode.com/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+spec:
+ rules:
+ - host: examplecheck12.com
+   http:
+     port: 8080
+     nodePort: 8080
+     paths:
+     - path: /
+       backend:
+         serviceName: apacheservice 
+         servicePort: 80

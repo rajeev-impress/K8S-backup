@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: coptcontainer
+spec:
+  completions: 3
+  parallelism: 2
+  template:
+    metadata:
+      labels:
+        env: prod-copy
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: copycontainer
+        image: samridhrakesh/job:v2

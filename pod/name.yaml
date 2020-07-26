@@ -1,0 +1,21 @@
+apiVersion: v1
+data:
+  password: tech
+  userid: 1234
+kind: Secret
+metadata:
+  name: mysec1
+type: Opaque
+apiVersion: v1
+data:
+  password: MTIzNEAxMjM0
+  userid: dGVjaGllZ2xvYnVz
+kind: Secret
+metadata:
+  creationTimestamp: "2020-06-14T04:06:17Z"
+  name: mysec
+  namespace: default
+  resourceVersion: "2084107"
+  selfLink: /api/v1/namespaces/default/secrets/mysec
+  uid: 6563c8e4-adf4-11ea-87de-080027af7d28
+type: Opaque

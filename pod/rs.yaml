@@ -1,0 +1,20 @@
+apiVersion: apps/v1beta2
+kind: ReplicaSet
+metadata:
+  name: onereplica
+spec:
+  replicas: 1
+  selector:
+   matchExpressions:
+     - key: env
+       operator: In
+       values:
+         - prod
+  template:
+    metadata:
+      labels:
+        env: prod
+    spec:
+      containers:
+      - name: pod-rc
+        image: httpd

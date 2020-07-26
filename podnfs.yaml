@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapache3
+spec:
+  containers:
+  - image: httpd
+    name: apache
+    volumeMounts:
+    - name: apache1
+      mountPath: /usr/local/apache2/htdocs/
+    ports:
+    - containerPort: 80
+      protocol: TCP
+  volumes:
+  - name: apache1
+    persistentVolumeClaim:
+      claimName: nfs-pvc1

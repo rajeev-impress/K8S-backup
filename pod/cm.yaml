@@ -1,0 +1,12 @@
+apiVersion: v1
+data:
+  conf.yaml: |
+    INTERVAL=90
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2020-06-14T03:34:28Z"
+  name: custom
+  namespace: default
+  resourceVersion: "2080502"
+  selfLink: /api/v1/namespaces/default/configmaps/custom
+  uid: f3866556-adef-11ea-87de-080027af7d28

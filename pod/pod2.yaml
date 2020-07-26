@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: frontend
+  name: teghieglobu
+spec:
+  containers:
+  - image: httpd
+    name: techie-ns
+    ports:
+    - containerPort: 80
+
