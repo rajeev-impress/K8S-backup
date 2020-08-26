@@ -1,0 +1,67 @@
+Name:                   pod-taint-test
+Namespace:              default
+CreationTimestamp:      Sat, 15 Aug 2020 14:54:49 +0000
+Labels:                 run=pod-taint-test
+Annotations:            deployment.kubernetes.io/revision: 2
+Selector:               run=pod-taint-test
+Replicas:               4 desired | 4 updated | 4 total | 4 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  run=pod-taint-test
+  Containers:
+   pod-taint-test:
+    Image:      busybox
+    Port:       <none>
+    Host Port:  <none>
+    Args:
+      sleep
+      80000
+    Environment:  <none>
+    Mounts:       <none>
+  Volumes:        <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   pod-taint-test-5d546c97b5 (4/4 replicas created)
+Events:
+  Type    Reason             Age    From                   Message
+  ----    ------             ----   ----                   -------
+  Normal  ScalingReplicaSet  32m    deployment-controller  Scaled up replica set pod-taint-test-586fb84ffd to 4
+  Normal  ScalingReplicaSet  4m48s  deployment-controller  Scaled up replica set pod-taint-test-5d546c97b5 to 1
+  Nor[?1049h[?1h=[?12;25h[?12l[?25h[27m[m[H[2J[?25l[1;1H# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "2"
+  creationTimestamp: "2020-08-15T14:54:49Z"
+  generation: 2
+  labels:
+    run: pod-taint-test
+  name: pod-taint-test
+  namespace: default
+  resourceVersion: "6027160"
+  selfLink: /apis/extensions/v1beta1/namespaces/default/deployments/pod-taint-test
+  uid: 44afdd71-df07-11ea-a431-080027af7d28
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 4
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:[25;7Hrun: pod-taint-test
+  strategy:
+    rollingUpdate:[28;7HmaxSurge: 25%[29;7HmaxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:[33;7HcreationTimestamp: null[34;7Hlabels:[35;9Hrun: pod-taint-test
+    spec:[37;7Hcontainers:[38;7H- args:[39;9H- sleep[40;9H- "80000"[8;3H[?12l[?25h[41;1H[?1l>[?1049lVim: Caught deadly signal HUP
+Vim: Finished.
+[41;1H

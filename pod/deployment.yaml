@@ -3,26 +3,30 @@ kind: Deployment
 metadata:
   name: techieglobusdep
 spec:
-  replicas: 2
+  replicas: 1
   template:
     metadata:
-      name: depv1
       labels:
         app: depv1
     spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 80
+            preference:
+              matchExpressions:
+              - key: capacity
+                operator: In
+                values:
+                - low
+          - weight: 20
+            preference:
+              matchExpressions:
+              - key: resource
+                operator: In
+                values:
+                - high
       containers:
       - image: samridhrakesh/appv1:v1
         name: nodejs
 
----
-apiVersion: v1
-kind: Service 
-metadata:
-  name: depv1
-spec:
-  type: NodePort
-  selector:
-    app: depv1
-  ports:
-  - port: 80
-    targetPort: 8080

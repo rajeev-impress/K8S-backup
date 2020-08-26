@@ -1,0 +1,31 @@
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: tg
+spec:
+  serviceName: tg
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: tg
+    spec:
+      containers:
+      - name: tg
+        image: httpd
+        ports:
+        - name: http
+          containerPort: 80
+        volumeMounts:
+        - name: data
+          mountPath: /usr/local/apache2/htdocs
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      resources:
+        requests:
+          storage: 1Mi
+      accessModes:
+      - ReadWriteOnce
+      storageClassName: managed-nfs-storage

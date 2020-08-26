@@ -1,0 +1,26 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: test1
+  name: test1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: test1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: test1
+    spec:
+      containers:
+      - image: nginx
+        name: test1
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}
